@@ -1,3 +1,4 @@
+// program that responsible in running the application
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,7 +14,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); // example of middleware
 app.UseStaticFiles();
 
 app.UseRouting();
