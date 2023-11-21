@@ -1,8 +1,11 @@
+<!--properties of the project-->
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+	  <!--take care of generating a global usings file that contain
+	  the most commonly used using statements-->
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
