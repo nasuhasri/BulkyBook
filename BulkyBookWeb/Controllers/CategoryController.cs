@@ -30,10 +30,22 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken] // prevent cross site request forgery attack
     public IActionResult Create(Category obj)
     {
-        _db.Categories.Add(obj);
-        _db.SaveChanges(); // this code will push the new record to the db
+        // add custom validation where we do not want to add category with same name and display order
+        if (obj.Name == obj.DisplayOrder.ToString())
+        {
+            // CustomError can also changed to name so the error will appear under input name
+            ModelState.AddModelError("CustomError", "The DisplayOrder cannot exactly match the Name");
+        }
 
-        return RedirectToAction("Index"); // redirect to action within the same controller
+        // server-side validation
+        if (ModelState.IsValid)
+        {
+            _db.Categories.Add(obj);
+            _db.SaveChanges(); // this code will push the new record to the db
+            return RedirectToAction("Index"); // redirect to action within the same controller
+        }
+
+        return View(obj);
 
         // RedirectToAction("Index", "<controller>") -> example of redirect to action in another controller
     }
