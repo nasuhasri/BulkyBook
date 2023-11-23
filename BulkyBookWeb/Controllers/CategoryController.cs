@@ -43,6 +43,10 @@ public class CategoryController : Controller
         {
             _db.Categories.Add(obj);
             _db.SaveChanges(); // this code will push the new record to the db
+
+            // stays in memory for just one redirect
+            TempData["success"] = "Category created successfully.";
+
             return RedirectToAction("Index"); // redirect to action within the same controller
         }
 
@@ -96,6 +100,8 @@ public class CategoryController : Controller
             _db.Categories.Update(obj);
             _db.SaveChanges(); // this code will push the new record to the db
 
+            TempData["success"] = "Category updated successfully.";
+
             return RedirectToAction("Index"); // redirect to action within the same controller
         }
 
@@ -145,6 +151,8 @@ public class CategoryController : Controller
 
         _db.Categories.Remove(obj);
         _db.SaveChanges();
+
+        TempData["success"] = "Category deleted successfully.";
 
         return RedirectToAction("Index");
     }
