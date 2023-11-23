@@ -25,4 +25,16 @@ public class CategoryController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken] // prevent cross site request forgery attack
+    public IActionResult Create(Category obj)
+    {
+        _db.Categories.Add(obj);
+        _db.SaveChanges(); // this code will push the new record to the db
+
+        return RedirectToAction("Index"); // redirect to action within the same controller
+
+        // RedirectToAction("Index", "<controller>") -> example of redirect to action in another controller
+    }
 }
