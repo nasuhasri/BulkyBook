@@ -19,4 +19,10 @@ public class CategoryController : Controller
 
         return View(objCategoryList);
     }
+
+    // GET
+    public IActionResult Create()
+    {
+        return View();
+    }
 }
